@@ -4,8 +4,9 @@
   </p>
 </template>
 <script>
+  import StudentService from '@/api-services/student.service';
 export default {
-  name: 'Home'
+    name: 'Home'
 };
 </script>
 <style scoped>
