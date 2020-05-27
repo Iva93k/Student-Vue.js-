@@ -1,7 +1,7 @@
 <template>
   <b-container fluid>
     <div class="form-wrapper">
-      <b-form @submit.prevent="createStudent">
+      <b-form @submit.prevent="updateStudent">
         <b-form-group :label-cols="2"
                       breakpoint="md"
                       horizontal
@@ -12,7 +12,7 @@
               <b-input id="indexNumber"
                        v-model="formData.indexNumber"
                        maxlength="50"
-                       required/>
+                       required />
               <span>{{ errors[0] }}</span>
             </validation-provider>
           </b-col>
@@ -27,7 +27,7 @@
             <b-input id="firstName"
                      v-model="formData.firstName"
                      maxlength="50"
-                     required/>
+                     required />
           </b-col>
         </b-form-group>
 
@@ -40,7 +40,7 @@
             <b-input id="lastName"
                      v-model="formData.lastName"
                      maxlength="50"
-                     required/>
+                     required />
           </b-col>
         </b-form-group>
         <b-form-group :label-cols="2"
@@ -51,7 +51,7 @@
           <b-col :md="5">
             <b-input id="year"
                      v-model.number="formData.year"
-                     type="number"/>
+                     type="number" />
           </b-col>
         </b-form-group>
         <b-form-group :label-cols="2"
@@ -61,7 +61,10 @@
                       for="studentStatus">
           <b-col :md="5">
             <div>
+              <validation-provider rules="required" v-slot="{ errors }">
                 <b-form-select v-model="formData.studentStatusId" :options="options" required></b-form-select>
+                <span>{{ errors[0] }}</span>
+              </validation-provider>
             </div>
           </b-col>
         </b-form-group>
@@ -94,7 +97,7 @@
     message: 'This field is required'
   });
 export default {
-    name: 'StudentCreate',
+    name: 'StudentUpdate',
     components: {
       ValidationProvider
     },
@@ -117,12 +120,21 @@ export default {
       ]
     };
     },
+    created() {
+      StudentService.get(this.$router.currentRoute.params.id).then((response) => {
+        this.formData.indexNumber = response.data.indexNumber;
+        this.formData.firstName = response.data.firstName;
+        this.formData.lastName = response.data.lastName;
+        this.formData.year = response.data.year;
+        this.formData.studentStatusId = response.data.studentStatusId;
+      });
+    },
     methods: {
-      createStudent() {
-        StudentService.create(this.formData).then(() => {
+      updateStudent() {
+        StudentService.update(this.$router.currentRoute.params.id, this.formData).then(() => {
           this.isSuccessfully = true;
           this.alertModalTitle = 'Successfully';
-          this.alertModalContent = 'Successfully created Student';
+          this.alertModalContent = 'Successfully updated Student';
           this.$refs.alertModal.show();
 
           this.formData = {

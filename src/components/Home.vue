@@ -76,7 +76,7 @@
         this.$router.push({ name: 'StudentDetails', params: { id: pkstudentId } });
       },
       updateStudent(pkstudentId) {
-        console.log('update', pkstudentId);
+        this.$router.push({ name: 'StudentUpdate', params: { id: pkstudentId } });
       },
       deleteStudent(pkstudentId) {
         this.selectedStudentId = pkstudentId;
