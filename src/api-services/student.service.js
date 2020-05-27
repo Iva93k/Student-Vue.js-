@@ -16,6 +16,7 @@ export default {
   },
 
   update(id, data) {
+    data.pkstudentId = Number(id);
     return Axios.put(`${RESOURCE_NAME}/${id}`, data);
   },
 
