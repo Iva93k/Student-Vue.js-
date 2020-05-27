@@ -32,12 +32,23 @@
                 :student="student"
                 @details="detailsStudent"
                 @update="updateStudent"
-                @delete="deleteStudent"/>
+                @delete="deleteStudent" />
             </tbody>
           </table>
         </div>
       </b-col>
     </b-row>
+    <b-modal ref="deleteConfirmModal"
+             title="Confirm your action"
+             @ok="onDeleteConfirm"
+             @hide="onDeleteModalHide">
+      <p class="my-4">Are you sure you want to delete this student?</p>
+    </b-modal>
+    <b-modal ref="alertModal"
+             :title="alertModalTitle"
+             :ok-only="true">
+      <p class="my-4">{{ alertModalContent }}</p>
+    </b-modal>
   </div>
 </template>
 <script>
@@ -51,23 +62,45 @@
     },
     data() {
       return {
-        students: []
+        students: [],
+        selectedStudentId: null,
+        alertModalTitle: '',
+        alertModalContent: ''
       };
     },
     created() {
-      StudentService.getAll().then((response) => {
-        this.students = response.data;
-      });
+      this.fetchStudents();
     },
     methods: {
       detailsStudent(pkstudentId) {
-        console.log('details', pkstudentId);
+        this.$router.push({ name: 'StudentDetails', params: { id: pkstudentId } });
       },
       updateStudent(pkstudentId) {
         console.log('update', pkstudentId);
       },
       deleteStudent(pkstudentId) {
-        console.log('delete', pkstudentId);
+        this.selectedStudentId = pkstudentId;
+        this.$refs.deleteConfirmModal.show();
+      },
+      fetchStudents() {
+        StudentService.getAll().then((response) => {
+          this.students = response.data;
+        });
+      },
+      onDeleteConfirm() {
+        StudentService.delete(this.selectedStudentId).then(() => {
+          this.alertModalTitle = 'Successfully';
+          this.alertModalContent = 'Successfully deleted Student';
+          this.$refs.alertModal.show();
+          this.fetchStudents();
+        }).catch((error) => {
+          this.alertModalTitle = 'Error';
+          this.alertModalContent = error.response.data;
+          this.$refs.alertModal.show();
+        });
+      },
+      onDeleteModalHide() {
+        this.selectedStudentId = null;
       }
     }
   };
