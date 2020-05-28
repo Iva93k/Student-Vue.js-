@@ -18,7 +18,6 @@
                 <th>First name</th>
                 <th>Last name</th>
                 <th>Year</th>
-                <th>Status Id</th>
                 <th>Status</th>
                 <th>Details</th>
                 <th>Update</th>

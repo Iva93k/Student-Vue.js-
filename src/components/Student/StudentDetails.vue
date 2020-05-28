@@ -41,6 +41,14 @@
           {{ student.year }}
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Status:</strong>
+        </div>
+        <div class="col-md-3">
+          {{ student.studentStatus['statusName'] }}
+        </div>
+      </div>
     </div>
   </div>
 </template>

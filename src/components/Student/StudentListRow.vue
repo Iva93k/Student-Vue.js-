@@ -5,8 +5,7 @@
     <td>{{ student.firstName }}</td>
     <td>{{ student.lastName }}</td>
     <td>{{ student.year }}</td>
-    <td>{{ student.studentStatusId }}</td>
-    <td>{{ student.studentStatus }}</td>
+    <td>{{ student.studentStatus['statusName'] }}</td>
     <td>
       <b-button
         variant="default"
