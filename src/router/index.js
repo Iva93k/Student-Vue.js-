@@ -5,6 +5,8 @@ import NotFound from '@/components/error-pages/NotFound'
 import StudentDetails from '@/components/Student/StudentDetails'
 import StudentCreate from '@/components/Student/StudentCreate'
 import StudentUpdate from '@/components/Student/StudentUpdate'
+import CoursesList from '@/components/Course/CoursesList'
+import CourseCreate from '@/components/Course/CourseCreate'
 
 Vue.use(Router)
 
@@ -20,6 +22,16 @@ export default new Router({
       path: '/Students',
       name: 'StudentCreate',
       component: StudentCreate
+    },
+    {
+      path: '/Course/list',
+      name: 'CoursesList',
+      component: CoursesList
+    },
+    {
+      path: '/Course/create',
+      name: 'CourseCreate',
+      component: CourseCreate
     },
     {
       path: '/student/update/:id',
