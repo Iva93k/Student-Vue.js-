@@ -7,6 +7,7 @@ import StudentCreate from '@/components/Student/StudentCreate'
 import StudentUpdate from '@/components/Student/StudentUpdate'
 import CoursesList from '@/components/Course/CoursesList'
 import CourseCreate from '@/components/Course/CourseCreate'
+import StudentsInCourse from '@/components/Course/StudentsInCourse'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
       path: '/Students/:id',
       name: 'StudentDetails',
       component: StudentDetails
+    },
+    {
+      path: '/Courses/:id',
+      name: 'StudentsInCourse',
+      component: StudentsInCourse
     },
     {
       path: '*',

@@ -2,58 +2,58 @@
   <div>
     <div class="well">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <strong>Student ID:</strong>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           {{ student.pkstudentId }}
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <strong>Index number:</strong>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           {{ student.indexNumber }}
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <strong>First name:</strong>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           {{ student.firstName }}
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <strong>Last name:</strong>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           {{ student.lastName }}
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <strong>Year:</strong>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           {{ student.year }}
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <strong>Status:</strong>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           {{ student.studentStatus['statusName'] }}
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <strong>Courses:</strong>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <ul class="list-group list-group-flush">
             <li class="list-group-item" v-for='course in student.coursesStudents'>
               {{course.course['courseName']}}

@@ -21,7 +21,7 @@
                 v-for="course in courses"
                 :key="course.pkcourseId"
                 :course="course"
-                @click.native="onCourseClicked(course.pkcourseId)"/>
+                @course="studentsInCourse"/>
             </tbody>
           </table>
         </div>
@@ -49,8 +49,8 @@ export default {
       });
     },
     methods: {
-      onCourseClicked(pkcourseId) {
-        console.log(pkcourseId);
+      studentsInCourse(pkcourseId) {
+        this.$router.push({ name: 'StudentsInCourse', params: { id: pkcourseId } });
       }
     }
 };
