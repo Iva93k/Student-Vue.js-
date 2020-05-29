@@ -49,7 +49,19 @@
           {{ student.studentStatus['statusName'] }}
         </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Courses:</strong>
+        </div>
+        <div class="col-md-3">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" v-for='course in student.coursesStudents'>
+              {{course.course['courseName']}}
+            </li>
+          </ul>
+          </div>
+        </div>
+      </div>
   </div>
 </template>
 <script>

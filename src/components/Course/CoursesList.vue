@@ -17,11 +17,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr
-              v-for="course in courses"
-              :key="course.pkcourseId">
-              <td>{{ course.courseName }}</td>
-            </tr>
+              <course-list-row
+                v-for="course in courses"
+                :key="course.pkcourseId"
+                :course="course"
+                @click.native="onCourseClicked(course.pkcourseId)"/>
             </tbody>
           </table>
         </div>
@@ -30,9 +30,14 @@
   </div>
 </template>
 <script>
-import CourseService from '@/api-services/course.service';
+  import CourseService from '@/api-services/course.service';
+  import CourseListRow from '@/components/Course/CourseListRow';
+
 export default {
     name: 'CoursesList',
+    components: {
+      CourseListRow
+    },
     data() {
       return {
         courses: []
@@ -42,6 +47,11 @@ export default {
       CourseService.getAll().then((response) => {
         this.courses = response.data;
       });
+    },
+    methods: {
+      onCourseClicked(pkcourseId) {
+        console.log(pkcourseId);
+      }
     }
 };
 </script>
