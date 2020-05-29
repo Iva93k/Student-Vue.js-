@@ -33,7 +33,7 @@
 </template>
 <script>
   import CourseService from '@/api-services/course.service';
-     
+
   export default {
     name: 'CourseCreate',
     data() {
@@ -53,7 +53,6 @@
           this.alertModalTitle = 'Successfully';
           this.alertModalContent = 'Successfully created Course';
           this.$refs.alertModal.show();
-
           this.formData = {
             courseName: ''
           };
@@ -84,4 +83,3 @@
     box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
   }
 </style>
-
